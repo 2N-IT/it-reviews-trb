@@ -21,7 +21,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem "trailblazer-rails"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -50,6 +50,13 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
+
+#add trailblazer
+gem 'dry-matcher', '0.7.0'
+gem 'dry-validation', '0.11.1'
+gem 'reform-rails', '0.1.7'
+gem 'trailblazer', '2.0.7'
+gem 'trailblazer-rails', '1.0.11'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
