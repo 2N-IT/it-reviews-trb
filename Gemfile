@@ -52,11 +52,11 @@ group :test do
 end
 
 #add trailblazer
-gem 'dry-matcher', '0.7.0'
+gem 'dry-matcher', '~> 0.8.2'
+gem 'reform', '~> 2.3.0.rc1'
+gem 'reform-rails', '~> 0.2.0.rc2'
 gem 'dry-validation', '0.11.1'
-gem 'reform-rails', '0.1.7'
-gem 'trailblazer', '2.0.7'
-gem 'trailblazer-rails', '1.0.11'
-
+gem 'trailblazer', '~> 2.1.0.rc13'
+gem 'trailblazer-rails', '2.1.7'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
