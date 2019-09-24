@@ -4,7 +4,7 @@ RSpec.describe User::Create do
   let(:email) { 'hello@gmail.com' }
 
   context 'valid data' do
-    let(:result) { described_class.(email: email) }
+    let(:result) { described_class.(params: {email: email}) }
 
     it 'should be success' do
       assert result.success?
@@ -15,15 +15,12 @@ RSpec.describe User::Create do
     end
 
     it 'should create user' do
-      new_user = result['model']
-      last_user = User.last
-
-      expect(new_user).to eq last_user
+      assert_equal result['model'], User.last
     end
   end
 
   context 'invalid data' do
-    let(:result) { described_class.(email: 12345) }
+    let(:result) { described_class.(params: {email: '12345'}) }
 
     it 'should has failure result' do
       assert result.failure?
