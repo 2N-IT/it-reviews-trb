@@ -30,5 +30,11 @@ RSpec.describe User::Create do
       assert_equal [:email],
         result["contract.default"].errors.messages.keys
     end
+
+    it 'should handle an error' do
+      error = { email: ['is in invalid format'] }
+
+      assert_equal error, result[:errors]
+    end
   end
 end
