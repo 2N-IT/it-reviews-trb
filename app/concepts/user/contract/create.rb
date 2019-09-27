@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
       VALID_EMAIL_REGEX = /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
-      validation :default do
+      validation email: :default do
         required(:email).filled(format?: VALID_EMAIL_REGEX)
       end
     end
