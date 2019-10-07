@@ -9,11 +9,11 @@ class User::Create < Trailblazer::Operation
 
   fail :persisting_errors!
 
-  def validation_errors!(options, params:, **)
+  def validation_errors!(options, **)
     options[:errors] = options['contract.default'].errors.messages
   end
 
-  def persisting_errors!(options, params:, **)
+  def persisting_errors!(options, **)
     options[:errors] = options['contract.default'].errors.messages
   end
 end
