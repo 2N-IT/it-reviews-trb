@@ -1,12 +1,9 @@
 class User < ApplicationRecord
   module Contract
-    class Create < Reform::Form
-      include Dry
+    class Create < BaseForm
       property :email
 
-      VALID_EMAIL_REGEX = /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-
-      validation email: :default do
+      validation do
         required(:email).filled(format?: VALID_EMAIL_REGEX)
       end
     end
