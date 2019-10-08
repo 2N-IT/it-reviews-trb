@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User::Create do
   let(:email) { 'hello@gmail.com' }
 
-  context 'valid data' do
+  context 'with valid data' do
     let(:result) { described_class.(params: {email: email}) }
 
     it 'should be success' do
@@ -19,7 +19,7 @@ RSpec.describe User::Create do
     end
   end
 
-  context 'invalid data' do
+  context 'with invalid data' do
     let(:result) { described_class.(params: {email: '12345'}) }
 
     it 'should has failure result' do
