@@ -1,17 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe User::Create do
-  let(:email) { 'hello@gmail.com' }
+  let(:params) {
+    {
+      email: 'hello@gmail.com'
+    }
+  }
 
   context 'with valid data' do
-    let(:result) { described_class.(params: {email: email}) }
+    let(:result) { described_class.(params: params) }
 
     it 'should be success' do
       assert result.success?
     end
 
     it 'should have email' do
-      assert_equal email, result["model"].email
+      assert_equal params[:email], result["model"].email
     end
 
     it 'should create user' do
