@@ -1,9 +1,16 @@
 class UserMailer < ApplicationMailer
-  default from: 'notifications@example.com'
-
   def welcome_email(model)
-    @user = model
-    @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+    mail(
+      to:           model.email,
+      body:         body,
+      subject:      'Welcome!',
+      content_type: 'text/html'
+    )
+  end
+
+  def body
+    'Welcome to My Awesome Site'
   end
 end
+
+# TODO: create link to users/activate and change active: to true
