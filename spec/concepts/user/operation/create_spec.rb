@@ -11,15 +11,15 @@ RSpec.describe User::Create do
     let(:result) { described_class.(params: params) }
 
     it 'should be success' do
-      assert result.success?
+      expect(result.success?).to be true
     end
 
-    it 'should have email' do
-      assert_equal params[:email], result["model"].email
+    it 'should has email' do
+      expect(result['model'].email).to eq(params[:email])
     end
 
     it 'should create user' do
-      assert_equal result['model'], User.last
+      expect(result['model']).to eq User.last
     end
   end
 
@@ -27,18 +27,13 @@ RSpec.describe User::Create do
     let(:result) { described_class.(params: {email: '12345'}) }
 
     it 'should has failure result' do
-      assert result.failure?
-    end
-
-    it 'should has an error' do
-      assert_equal [:email],
-        result["contract.default"].errors.messages.keys
+      expect(result.failure?).to be true
     end
 
     it 'should handle an error' do
       error = { email: ['is in invalid format'] }
 
-      assert_equal error, result[:errors]
+      expect(result[:errors]).to eq(error)
     end
   end
 end
