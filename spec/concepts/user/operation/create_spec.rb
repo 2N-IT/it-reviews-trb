@@ -11,7 +11,6 @@ RSpec.describe User::Create do
     let(:result) { described_class.(params: params) }
 
     it 'should be success' do
-      p result
       expect(result).to be_success
     end
 
