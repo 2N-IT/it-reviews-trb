@@ -11,7 +11,8 @@ RSpec.describe User::Create do
     let(:result) { described_class.(params: params) }
 
     it 'should be success' do
-      expect(result.success?).to be true
+      p result
+      expect(result).to be_success
     end
 
     it 'should has email' do
@@ -21,19 +22,22 @@ RSpec.describe User::Create do
     it 'should create user' do
       expect(result['model']).to eq User.last
     end
+
+    it "sends an email" do
+      expect { result }.to change { ActionMailer::Base.deliveries.count }.by(1)
+    end
   end
 
   context 'with invalid data' do
     let(:result) { described_class.(params: {email: '12345'}) }
 
     it 'should has failure result' do
-      expect(result.failure?).to be true
+      expect(result).to be_failure
     end
 
     it 'should handle an error' do
-      error = { email: ['is in invalid format'] }
-
-      expect(result[:errors]).to eq(error)
+      error = 'is in invalid format'
+      expect(result[:errors]).to include(error)
     end
   end
 end

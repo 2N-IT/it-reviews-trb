@@ -1,21 +1,31 @@
 class User::Create < Trailblazer::Operation
-  step Model(User, :new)
-  step Contract::Build(constant: User::Contract::Create)
+  class Present < Trailblazer::Operation
+    step Model(User, :new)
+    step Contract::Build(constant: User::Contract::Create)
+  end
+
+  step Subprocess(Present)
   step Contract::Validate()
-  fail :validation_errors!
+  fail :handle_errors!
+  pass :generate_activation_token!
   step Contract::Persist()
-  fail :persisting_errors!
   step :send_email!
 
-  def validation_errors!(options, **)
-    options[:errors] = options['contract.default'].errors.messages
+  def generate_activation_token!(options, **)
+    begin
+      options['model'].activation_token = SecureRandom.urlsafe_base64
+    end while User.exists?(
+      activation_token: options['model'].activation_token
+    )
   end
 
-  def persisting_errors!(options, **)
-    options[:errors] = options['contract.default'].errors.messages
+  def handle_errors!(options, **)
+    details = options['contract.default'].errors.messages
+    options[:errors] = "Validation failed: #{details}"
   end
 
-  def send_email!(options, model:, **)
-    UserMailer.welcome_email(model).deliver_now
+  def send_email!(options, params:, **)
+    user = User.find_by(email: params[:email])
+    UserMailer.with(user: user).welcome_email.deliver_now
   end
 end
