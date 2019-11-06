@@ -6,8 +6,11 @@ RSpec.describe User::Operation::Activate do
     before do
       @activation_token = SecureRandom.urlsafe_base64
       @user = User.create(
-        email: 'test3@gmail.com',
-        activation_token: @activation_token
+        email:                 'test3@gmail.com',
+        activation_token:      @activation_token,
+        password:              'secret',
+        password_confirmation: 'secret'
+
       )
 
       @params = { activation_token: @user.activation_token }
@@ -44,9 +47,11 @@ RSpec.describe User::Operation::Activate do
     before do
       @activation_token = SecureRandom.urlsafe_base64
       @user = User.create(
-        email: 'test3@gmail.com',
-        activation_token: @activation_token,
-        active: true
+        email:                 'test3@gmail.com',
+        activation_token:      @activation_token,
+        active:                true,
+        password:              'secret',
+        password_confirmation: 'secret'
       )
 
       @params = { activation_token: @user.activation_token }
