@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2019_10_12_122205) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "active", default: false
     t.string "activation_token"
+    t.index ["activation_token"], name: "index_users_on_activation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
