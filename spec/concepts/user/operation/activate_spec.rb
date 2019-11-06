@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User::Activate do
+RSpec.describe User::Operation::Activate do
 
   context 'with valid data' do
     before do
@@ -36,7 +36,7 @@ RSpec.describe User::Activate do
     end
 
     it 'should handle an error' do
-      expect(result['result.model']).to include('Wrong activation token')
+      expect(result[:errors]).to include('Wrong activation token')
     end
   end
 
@@ -59,7 +59,7 @@ RSpec.describe User::Activate do
     end
 
     it 'should handle an error' do
-      expect(result['result.model']).to include('is already active!')
+      expect(result[:errors]).to include('is already active!')
     end
   end
 end

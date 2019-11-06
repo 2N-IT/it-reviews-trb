@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
   def new
-    run User::Create::Present
+    run User::Operation::Create::Present
   end
 
   def create
-    run User::Create
+    run User::Operation::Create
   end
 
   def activate
-    run User::Activate
+    run User::Operation::Activate
   end
 end

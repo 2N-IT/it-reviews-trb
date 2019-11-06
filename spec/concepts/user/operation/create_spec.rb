@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User::Create do
+RSpec.describe User::Operation::Create do
   let(:params) {
     {
       email: 'hello@gmail.com'
