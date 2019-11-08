@@ -2,12 +2,12 @@ require "rails_helper"
 
 RSpec.describe UserMailer, type: :mailer do
   describe 'welcome email' do
-    before do
-      @user = User.create(email: 'test2@gmail.com',
-                          activation_token: SecureRandom.urlsafe_base64)
-    end
+    let(:user) {
+      User.create(email: 'test2@gmail.com',
+                  activation_token: SecureRandom.urlsafe_base64)
+    }
 
-    let(:mail) { described_class.with(user: @user).welcome_email }
+    let(:mail) { described_class.with(user: user).welcome_email }
 
     it 'renders the headers' do
       expect(mail.subject).to eq('Registration Confirmation')

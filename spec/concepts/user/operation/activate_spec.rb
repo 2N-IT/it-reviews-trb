@@ -3,27 +3,26 @@ require 'rails_helper'
 RSpec.describe User::Operation::Activate do
 
   context 'with valid data' do
-    before do
-      @activation_token = SecureRandom.urlsafe_base64
-      @user = User.create(
-        email:                 'test3@gmail.com',
-        activation_token:      @activation_token,
+    let(:activation_token) { SecureRandom.urlsafe_base64 }
+    let(:email) { 'test@gmail.com' }
+    let(:user) {
+      User.create(
+        email:                 email,
+        activation_token:      activation_token,
         password:              'secret',
         password_confirmation: 'secret'
-
       )
+    }
 
-      @params = { activation_token: @user.activation_token }
-    end
-
-    let(:result) { described_class.(params: @params) }
+    let(:params) { { activation_token: user.activation_token } }
+    let(:result) { described_class.(params: params) }
 
     it 'should be success' do
       expect(result).to be_success
     end
 
     it 'should has email' do
-      expect(result['model'].email).to eq(@user.email)
+      expect(result['model'].email).to eq(email)
     end
 
     it 'should activate user' do
@@ -43,21 +42,21 @@ RSpec.describe User::Operation::Activate do
     end
   end
 
-  context 'user is alredy activated' do
-    before do
-      @activation_token = SecureRandom.urlsafe_base64
-      @user = User.create(
-        email:                 'test3@gmail.com',
-        activation_token:      @activation_token,
+  context 'when user is alredy activated' do
+    let(:activation_token) { SecureRandom.urlsafe_base64 }
+    let(:email) { 'test@gmail.com' }
+    let(:user) {
+      User.create(
+        email:                 email,
+        activation_token:      activation_token,
         active:                true,
         password:              'secret',
         password_confirmation: 'secret'
       )
+    }
 
-      @params = { activation_token: @user.activation_token }
-    end
-
-    let(:result) { described_class.(params: @params) }
+    let(:params) { { activation_token: user.activation_token } }
+    let(:result) { described_class.(params: params) }
 
     it 'should has failure result' do
       expect(result).to be_failure
