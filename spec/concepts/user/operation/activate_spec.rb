@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User::Operation::Activate do
+  subject(:result) { described_class.(params: params) }
 
   context 'with valid data' do
     let(:activation_token) { SecureRandom.urlsafe_base64 }
@@ -15,10 +16,9 @@ RSpec.describe User::Operation::Activate do
     }
 
     let(:params) { { activation_token: user.activation_token } }
-    let(:result) { described_class.(params: params) }
 
     it 'should be success' do
-      expect(result).to be_success
+      is_expected.to be_success
     end
 
     it 'should has email' do
@@ -31,10 +31,10 @@ RSpec.describe User::Operation::Activate do
   end
 
   context 'with invalid data' do
-    let(:result) { described_class.(params: {activation_token: '12345'}) }
+    let(:params) { { activation_token: '12345' } }
 
     it 'should has failure result' do
-      expect(result).to be_failure
+      is_expected.to be_failure
     end
 
     it 'should handle an error' do
@@ -56,10 +56,9 @@ RSpec.describe User::Operation::Activate do
     }
 
     let(:params) { { activation_token: user.activation_token } }
-    let(:result) { described_class.(params: params) }
 
     it 'should has failure result' do
-      expect(result).to be_failure
+      is_expected.to be_failure
     end
 
     it 'should handle an error' do

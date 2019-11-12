@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
       validation do
         required(:email).filled(format?: VALID_EMAIL_REGEX)
-        required(:password).filled(min_size?: 12).confirmation
+        required(:password).filled(min_size?: 8).confirmation
       end
     end
   end

@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User::Operation::Create do
+  subject(:result) { described_class.(params: params) }
 
   context 'with valid data' do
     let(:params) {
@@ -11,10 +12,8 @@ RSpec.describe User::Operation::Create do
       }
     }
 
-    let(:result) { described_class.(params: params) }
-
     it 'should be success' do
-      expect(result).to be_success
+      is_expected.to be_success
     end
 
     it 'should has email' do
@@ -39,10 +38,8 @@ RSpec.describe User::Operation::Create do
       }
     }
 
-    let(:result) { described_class.(params: params) }
-
     it 'should has failure result' do
-      expect(result).to be_failure
+      is_expected.to be_failure
     end
 
     it 'should handle an error' do
@@ -60,14 +57,12 @@ RSpec.describe User::Operation::Create do
       }
     }
 
-    let(:result) { described_class.(params: params) }
-
     it 'should has failure result' do
-      expect(result).to be_failure
+      is_expected.to be_failure
     end
 
     it 'should handle an error' do
-      error = 'size cannot be less than 12'
+      error = 'size cannot be less than 8'
       expect(result[:errors]).to include(error)
     end
   end
