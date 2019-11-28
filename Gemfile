@@ -69,5 +69,12 @@ gem 'reform', '~> 2.3.0.rc1'
 gem 'reform-rails', '~> 0.2.0.rc2'
 gem 'trailblazer', '~> 2.1.0.rc13'
 gem 'trailblazer-rails', '2.1.7'
+
+# view
+gem 'trailblazer-cells', '~> 0.0.3'
+gem 'cells-rails', '~> 0.1.0'
+gem 'cells-haml', '~> 0.0.10'
+gem 'simple_form', '~> 5.0', '>= 5.0.1'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
