@@ -20,8 +20,7 @@ Style/Documentation:
   Enabled: false
 Style/SignalException:
   Exclude:
-    - app/concepts/user/operation/create.rb
-    - app/concepts/user/operation/activate.rb
+    - app/concepts/user/operation/*
 Lint/UnreachableCode:
   Description: 'Unreachable code.'
   Enabled: false

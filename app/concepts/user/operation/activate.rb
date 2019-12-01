@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   module Operation
     class Activate < Trailblazer::Operation
@@ -8,12 +10,14 @@ class User < ApplicationRecord
       step :persist!
 
       def model!(options, params:, **)
-        options['model'] = User.find_by(activation_token: params[:activation_token])
+        options['model'] = User.find_by(
+          activation_token: params[:activation_token]
+        )
       end
 
       def user_does_not_exist!(options, params:, **)
-        options[:errors] = 'Wrong activation token ' +
-                                  "#{params[:activation_token]}!"
+        options[:errors] = 'Wrong activation token ' \
+                           "#{params[:activation_token]}!"
       end
 
       def activate_user!(options, model:, **)
@@ -21,8 +25,8 @@ class User < ApplicationRecord
       end
 
       def user_is_active_already!(options, params:, **)
-        options[:errors] ||= 'User with activation token ' +
-                                  "#{params[:activation_token]} is already active!"
+        options[:errors] ||= 'User with activation token ' \
+                             "#{params[:activation_token]} is already active!"
       end
 
       def persist!(options, **)
