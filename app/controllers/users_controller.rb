@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     run User::Operation::Create do |result|
       return redirect_to users_path(id: result['model'].id)
     end
-    p @form
     render cell(User::Cell::New, @form), layout: false
   end
 
