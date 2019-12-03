@@ -18,7 +18,7 @@ RSpec.describe User::Operation::Create do
       expect(result).to be_success
     end
 
-    it 'hases email' do
+    it 'has email' do
       expect(result['model'].email).to eq(params[:email])
     end
 
@@ -40,7 +40,7 @@ RSpec.describe User::Operation::Create do
       }
     end
 
-    it 'hases failure result' do
+    it 'has failure result' do
       expect(result).to be_failure
     end
 
@@ -59,7 +59,7 @@ RSpec.describe User::Operation::Create do
       }
     end
 
-    it 'hases failure result' do
+    it 'has failure result' do
       expect(result).to be_failure
     end
 

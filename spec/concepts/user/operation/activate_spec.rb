@@ -23,7 +23,7 @@ RSpec.describe User::Operation::Activate do
       expect(result).to be_success
     end
 
-    it 'hases email' do
+    it 'has email' do
       expect(result['model'].email).to eq(email)
     end
 
@@ -35,7 +35,7 @@ RSpec.describe User::Operation::Activate do
   context 'with invalid data' do
     let(:params) { { activation_token: '12345' } }
 
-    it 'hases failure result' do
+    it 'has failure result' do
       expect(result).to be_failure
     end
 
@@ -59,7 +59,7 @@ RSpec.describe User::Operation::Activate do
 
     let(:params) { { activation_token: user.activation_token } }
 
-    it 'hases failure result' do
+    it 'has failure result' do
       expect(result).to be_failure
     end
 
