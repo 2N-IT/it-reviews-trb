@@ -40,7 +40,9 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution
   # and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'pry', '~> 0.12.2'
   gem 'rspec-rails', '~> 3.8'
+  gem 'trailblazer-test', '~> 0.1.0'
 end
 
 group :development do
@@ -57,6 +59,7 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
+  gem 'database_cleaner', '~> 1.7'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
@@ -64,7 +67,7 @@ end
 
 # add trailblazer
 gem 'dry-matcher', '~> 0.8.2'
-gem 'dry-validation', '0.11.1'
+gem 'dry-validation', '~> 0.13.3'
 gem 'reform', '~> 2.3.0.rc1'
 gem 'reform-rails', '~> 0.2.0.rc2'
 gem 'trailblazer', '~> 2.1.0.rc13'

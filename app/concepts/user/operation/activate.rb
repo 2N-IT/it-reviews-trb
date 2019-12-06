@@ -2,7 +2,7 @@
 
 class User < ApplicationRecord
   module Operation
-    class Activate < Trailblazer::Operation
+    class Activate < OperationBase
       step :model!
       fail :user_does_not_exist!
       step :activate_user!

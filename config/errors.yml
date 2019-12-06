@@ -1,0 +1,3 @@
+en:
+  errors:
+    unique_title_for_author?: "We have such book with this author already"
