@@ -4,7 +4,7 @@ class User < ApplicationRecord
   module Operation
     class Activate < OperationBase
       step :model!
-      fail :user_does_not_exist!
+      fail :user_does_not_exist!, fail_fast: true
       step :activate_user!
       fail :user_is_active_already!
       step :persist!
