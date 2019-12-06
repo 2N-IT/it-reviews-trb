@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   module Operation
     class Create < Trailblazer::Operation
@@ -14,11 +16,13 @@ class User < ApplicationRecord
       step :send_email!
 
       def generate_activation_token!(options, **)
-        begin
+        loop do
           options['model'].activation_token = SecureRandom.urlsafe_base64
-        end while User.exists?(
-          activation_token: options['model'].activation_token
-        )
+
+          break unless User.exists?(
+            activation_token: options['model'].activation_token
+          )
+        end
       end
 
       def handle_errors!(options, **)
@@ -26,7 +30,7 @@ class User < ApplicationRecord
         options[:errors] = "Validation failed: #{details}"
       end
 
-      def send_email!(options, params:, **)
+      def send_email!(_options, params:, **)
         user = User.find_by(email: params[:email])
         UserMailer.with(user: user).welcome_email.deliver_now
       end

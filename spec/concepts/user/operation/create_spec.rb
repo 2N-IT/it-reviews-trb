@@ -1,67 +1,69 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User::Operation::Create do
-  subject(:result) { described_class.(params: params) }
+  subject(:result) { described_class.call(params: params) }
 
   context 'with valid data' do
-    let(:params) {
+    let(:params) do
       {
-        email:                 'hello@gmail.com',
-        password:              'secretsecret',
+        email: 'hello@gmail.com',
+        password: 'secretsecret',
         password_confirmation: 'secretsecret'
       }
-    }
-
-    it 'should be success' do
-      is_expected.to be_success
     end
 
-    it 'should has email' do
+    it 'is success' do
+      expect(result).to be_success
+    end
+
+    it 'has email' do
       expect(result['model'].email).to eq(params[:email])
     end
 
-    it 'should create user' do
+    it 'creates user' do
       expect(result['model']).to eq User.last
     end
 
-    it "sends an email" do
+    it 'sends an email' do
       expect { result }.to change { ActionMailer::Base.deliveries.count }.by(1)
     end
   end
 
   context 'with invalid email' do
-    let(:params) {
+    let(:params) do
       {
-        email:                 '12345',
-        password:              'secretsecret',
+        email: '12345',
+        password: 'secretsecret',
         password_confirmation: 'secretsecret'
       }
-    }
-
-    it 'should has failure result' do
-      is_expected.to be_failure
     end
 
-    it 'should handle an error' do
+    it 'has failure result' do
+      expect(result).to be_failure
+    end
+
+    it 'handles an error' do
       error = 'is in invalid format'
       expect(result[:errors]).to include(error)
     end
   end
 
   context 'with invalid password' do
-    let(:params) {
+    let(:params) do
       {
-        email:                 'hello@gmail.com',
-        password:              'secret',
+        email: 'hello@gmail.com',
+        password: 'secret',
         password_confirmation: 'secret'
       }
-    }
-
-    it 'should has failure result' do
-      is_expected.to be_failure
     end
 
-    it 'should handle an error' do
+    it 'has failure result' do
+      expect(result).to be_failure
+    end
+
+    it 'handles an error' do
       error = 'size cannot be less than 8'
       expect(result[:errors]).to include(error)
     end

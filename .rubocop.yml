@@ -1,0 +1,26 @@
+---
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+AllCops:
+  TargetRubyVersion: '2.6.3'
+  Exclude:
+      - 'node_modules/**/*'
+      - 'bin/*'
+      - 'config/**/*'
+      - 'db/**/*'
+      - 'spec/spec_helper.rb'
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'lib/tasks/*.rake'
+  ExcludedMethods: ['describe', 'context', 'namespace', 'resource']
+Style/Documentation:
+  Enabled: false
+Style/SignalException:
+  Exclude:
+    - app/concepts/user/operation/*
+Lint/UnreachableCode:
+  Description: 'Unreachable code.'
+  Enabled: false
