@@ -30,7 +30,7 @@ class User < ApplicationRecord
         options[:errors] = "Validation failed: #{details}"
       end
 
-      def send_email!(options, model:, **)
+      def send_email!(_options, model:, **)
         UserMailer.with(user: model).welcome_email.deliver_now
       end
     end

@@ -14,7 +14,8 @@ class UsersController < ApplicationController
   end
 
   def activate
-    run User::Operation::Activate do |result|
+    # commented result temprorary because of rubocop
+    run User::Operation::Activate do # |result|
       return redirect_to 'smt.......'
     end
     render cell(User::Cell::Welcome, @form), layout: false

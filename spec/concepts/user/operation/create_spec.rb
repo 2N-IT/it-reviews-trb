@@ -9,8 +9,8 @@ RSpec.describe User::Operation::Create do
     let(:params) do
       {
         'user' => {
-          email:                 'hello@gmail.com',
-          password:              'secretsecret',
+          email: 'hello@gmail.com',
+          password: 'secretsecret',
           password_confirmation: 'secretsecret'
         }
       }
@@ -20,7 +20,7 @@ RSpec.describe User::Operation::Create do
       expect(result).to be_success
     end
 
-    it 'should has email' do
+    it 'has an email' do
       expect(result['model'].email).to eq('hello@gmail.com')
     end
 
@@ -37,8 +37,8 @@ RSpec.describe User::Operation::Create do
     let(:params) do
       {
         'user' => {
-          email:                 '12345',
-          password:              'secretsecret',
+          email: '12345',
+          password: 'secretsecret',
           password_confirmation: 'secretsecret'
         }
       }
@@ -58,8 +58,8 @@ RSpec.describe User::Operation::Create do
     let(:params) do
       {
         'user' => {
-          email:                 'hello@gmail.com',
-          password:              'secret',
+          email: 'hello@gmail.com',
+          password: 'secret',
           password_confirmation: 'secret'
         }
       }
