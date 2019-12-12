@@ -1,0 +1,16 @@
+.row.new
+  .h1 Registration
+
+  = simple_form_for model do |f|
+    .row
+      .col-sm-12
+        = f.input :email, placeholder: "Email", label: false
+    .row
+      .col-sm-12
+        = f.input :password, placeholder: "password", label: false
+    .row
+      .col-sm-12
+        = f.input :password_confirmation, placeholder: "confirm your password", label: false
+    .row
+      .col-sm-12
+        = f.submit 'Submit'

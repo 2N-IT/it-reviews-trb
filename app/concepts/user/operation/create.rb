@@ -9,7 +9,7 @@ class User < ApplicationRecord
       end
 
       step Subprocess(Present)
-      step self::Contract::Validate()
+      step self::Contract::Validate(key: 'user')
       fail :handle_errors!
       pass :generate_activation_token!
       step self::Contract::Persist()
@@ -30,9 +30,8 @@ class User < ApplicationRecord
         options[:errors] = "Validation failed: #{details}"
       end
 
-      def send_email!(_options, params:, **)
-        user = User.find_by(email: params[:email])
-        UserMailer.with(user: user).welcome_email.deliver_now
+      def send_email!(_options, model:, **)
+        UserMailer.with(user: model).welcome_email.deliver_now
       end
     end
   end

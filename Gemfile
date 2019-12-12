@@ -36,6 +36,8 @@ gem 'rubocop-rspec', '~> 1.37'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+gem 'pry', '~> 0.12.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution
   # and get a debugger console
@@ -69,5 +71,12 @@ gem 'reform', '~> 2.3.0.rc1'
 gem 'reform-rails', '~> 0.2.0.rc2'
 gem 'trailblazer', '~> 2.1.0.rc13'
 gem 'trailblazer-rails', '2.1.7'
+
+# view
+gem 'cells-haml', '~> 0.0.10'
+gem 'cells-rails', '~> 0.1.0'
+gem 'simple_form', '~> 5.0', '>= 5.0.1'
+gem 'trailblazer-cells', '~> 0.0.3'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
