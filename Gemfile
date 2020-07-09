@@ -68,9 +68,9 @@ end
 # add trailblazer
 gem 'dry-matcher', '~> 0.8.2'
 gem 'dry-validation', '~> 0.13.3'
-gem 'reform', '~> 2.3.0.rc1'
-gem 'reform-rails', '~> 0.2.0.rc2'
-gem 'trailblazer', '~> 2.1.0.rc13'
+gem 'reform', '~> 2.3', '>= 2.3.3'
+gem 'reform-rails', '~> 0.2.0'
+gem 'trailblazer', '~> 2.1'
 gem 'trailblazer-rails', '2.1.7'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
