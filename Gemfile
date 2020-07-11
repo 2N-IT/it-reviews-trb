@@ -29,7 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 # RUBOCOP
 gem 'rubocop', '~> 0.77.0'
-gem 'rubocop-performance', '~> 1.5', '>= 1.5.1'
+gem 'rubocop-performance', '~> 1.5'
 gem 'rubocop-rails', '~> 2.4'
 gem 'rubocop-rspec', '~> 1.37'
 
@@ -66,9 +66,8 @@ group :test do
 end
 
 # add trailblazer
-gem 'dry-matcher', '~> 0.8.2'
 gem 'dry-validation', '~> 0.13.3'
-gem 'reform', '~> 2.3', '>= 2.3.3'
+gem 'reform', '~> 2.3'
 gem 'reform-rails', '~> 0.2.0'
 gem 'trailblazer', '~> 2.1'
 gem 'trailblazer-rails', '2.1.7'

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# TODO: update dry-validation gem and use high-rule for unique_title_for_author
 class Book < ApplicationRecord
   module Contract
     class Create < BaseForm
@@ -9,18 +8,22 @@ class Book < ApplicationRecord
       property :publisher
       property :created_by_user_id
 
-      validation name: :unique, with: { form: true } do
+      validation do
         configure do
           config.messages_file = './config/errors.yml'
 
-          def unique_title_for_author?(author)
-            Book.find_by(author: author, title: form.title).nil?
+          def unique_for_author?(author, title)
+            Book.find_by(author: author, title: title).blank?
           end
         end
 
         required(:title).filled(:str?)
         required(:created_by_user_id).filled
-        required(:author).filled(:unique_title_for_author?)
+        required(:author).filled(:str?)
+
+        rule(title_uniqueness: %i[author title]) do |author, title|
+          title.unique_for_author?(author)
+        end
       end
     end
   end

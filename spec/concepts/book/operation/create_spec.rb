@@ -21,7 +21,7 @@ RSpec.describe Book::Operation::Create do
       {
         author: 'Sendi Metz',
         title: 'POOD in Ruby',
-        user: { id: user.id }
+        created_by_user_id: user.id
       }
     end
 
@@ -40,7 +40,7 @@ RSpec.describe Book::Operation::Create do
       {
         author: 'Sendi Metz',
         title: 'another book',
-        user: { id: user.id }
+        created_by_user_id: user.id
       }
     end
 
