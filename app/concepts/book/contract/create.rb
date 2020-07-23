@@ -9,20 +9,19 @@ class Book < ApplicationRecord
       property :created_by_user_id
 
       validation do
-        configure do
-          config.messages_file = './config/errors.yml'
+        option :form
 
-          def unique_for_author?(author, title)
-            Book.find_by(author: author, title: title).blank?
-          end
+        schema do
+          required(:title).filled(:str?)
+          required(:created_by_user_id).filled
+          required(:author).filled(:str?)
         end
 
-        required(:title).filled(:str?)
-        required(:created_by_user_id).filled
-        required(:author).filled(:str?)
-
-        rule(title_uniqueness: %i[author title]) do |author, title|
-          title.unique_for_author?(author)
+        rule(:title) do
+          record = form.model
+          if record.class.find_by(author: values[:author], title: value).present?
+            key.failure('We have such book with this author already')
+          end
         end
       end
     end

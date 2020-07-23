@@ -66,7 +66,7 @@ group :test do
 end
 
 # add trailblazer
-gem 'dry-validation', '~> 0.13.3'
+gem 'dry-validation', '~> 1.5', '>= 1.5.2'
 gem 'reform', '~> 2.3'
 gem 'reform-rails', '~> 0.2.0'
 gem 'trailblazer', '~> 2.1'

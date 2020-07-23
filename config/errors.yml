@@ -1,5 +1,0 @@
-en:
-  errors:
-    rules:
-      title_uniqueness:
-        unique_for_author?: 'We have such book with this author already'
