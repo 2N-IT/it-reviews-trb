@@ -28,7 +28,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'image_processing', '~> 1.2'
 
 # RUBOCOP
-gem 'rubocop', '~> 0.77.0'
+gem 'rubocop', '~> 0.88.0'
 gem 'rubocop-performance', '~> 1.5'
 gem 'rubocop-rails', '~> 2.4'
 gem 'rubocop-rspec', '~> 1.37'
