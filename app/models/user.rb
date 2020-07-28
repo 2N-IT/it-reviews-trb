@@ -3,6 +3,6 @@
 class User < ApplicationRecord
   has_secure_password
 
-  has_many :books, dependent: :nullify, inverse_of: :created_by_user,
-                   foreign_key: :created_by_user_id
+  has_many :books, dependent: :nullify, inverse_of: :creator,
+                   foreign_key: :creator_id
 end

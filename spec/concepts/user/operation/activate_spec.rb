@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe User::Operation::Activate do
+describe User::Operation::Activate do
   subject(:result) { described_class.call(params: params) }
 
   context 'with valid data' do

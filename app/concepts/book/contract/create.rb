@@ -6,14 +6,14 @@ class Book < ApplicationRecord
       property :author
       property :title
       property :publisher
-      property :created_by_user_id
+      property :creator_id
 
       validation do
         option :form
 
         schema do
           required(:title).filled(:str?)
-          required(:created_by_user_id).filled
+          required(:creator_id).filled
           required(:author).filled(:str?)
         end
 

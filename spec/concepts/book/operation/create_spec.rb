@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Book::Operation::Create do
+describe Book::Operation::Create do
   include Trailblazer::Test::Deprecation::Operation::Helper
 
   subject(:result) { described_class.call(params: params) }
@@ -21,7 +21,7 @@ RSpec.describe Book::Operation::Create do
       {
         author: 'Sendi Metz',
         title: 'POOD in Ruby',
-        created_by_user_id: user.id
+        creator_id: user.id
       }
     end
 
@@ -40,7 +40,7 @@ RSpec.describe Book::Operation::Create do
       {
         author: 'Sendi Metz',
         title: 'another book',
-        created_by_user_id: user.id
+        creator_id: user.id
       }
     end
 

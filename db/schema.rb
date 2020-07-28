@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 2020_02_29_083936) do
     t.string "publisher"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "created_by_user_id"
-    t.index ["created_by_user_id"], name: "index_books_on_created_by_user_id"
+    t.bigint "creator_id"
+    t.index ["creator_id"], name: "index_books_on_creator_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -55,5 +55,5 @@ ActiveRecord::Schema.define(version: 2020_02_29_083936) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "books", "users", column: "created_by_user_id"
+  add_foreign_key "books", "users", column: "creator_id"
 end
