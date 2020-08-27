@@ -3,25 +3,28 @@
 class Book < ApplicationRecord
   module Operation
     class Search < OperationBase
-      step :create_book_params
-      fail :show_errors, fail_fast: true
+      step :params_present?
+      fail :empty_params, fail_fast: true
       step :model
       fail :books_undefined
 
-      def create_book_params(options, params:, **)
-        book_params = {}
-        book_params[:title] = params[:title] if params[:title]
-        book_params[:author] = params[:author] if params[:author]
-        book_params[:categories] = { name: params[:category] } if params[:category]
-        options[:book_params] = book_params if book_params.any?
+      def params_present?(_options, params:, **)
+        params.any?
       end
 
-      def show_errors(options, **)
+      def empty_params(options, **)
         options[:errors] = 'Please fill searching fields'
       end
 
-      def model(options, book_params:, **)
-        books = book_params[:categories] ? Book.includes(:categories) : Book
+      def model(options, params:, **)
+        books = Book
+        book_params = {}.tap { |empty_hash| empty_hash.merge!(params.except(:category)) }
+
+        if params.key?(:category)
+          books = Book.includes(:categories)
+          book_params[:categories] = { name: params[:category] }
+        end
+
         books = books.where(book_params)
         options[:model] = books if books.any?
       end

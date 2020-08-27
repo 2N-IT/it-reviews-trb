@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Book::Operation::Search do
   include Trailblazer::Test::Deprecation::Operation::Helper
 
-  subject(:result) { described_class.call(params: params) }
+  subject(:result) { described_class.call(params: params.except(:creator_id)) }
 
   let(:category_name) { 'ruby' }
   let(:user) { factory(User::Operation::Create, params: user_params)[:model] }
